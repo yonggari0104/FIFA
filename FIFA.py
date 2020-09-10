@@ -16,3 +16,24 @@ print(fifa.info())
 print(fifa.head())
 print(fifa.dtypes)
 print(fifa.describe())
+
+
+
+
+#AGE BREAKDOWN
+print(fifa['Age'].value_counts())
+#BAR GRAPH OF COUNT BY AGE
+ax = sns.catplot(x='Age',kind='count',data=fifa,orient="h",height=30,aspect=1)
+ax.fig.suptitle('Age Count')
+ax.fig.autofmt_xdate()
+
+
+
+
+
+
+
+
+
+
+#%%
