@@ -22,10 +22,70 @@ print(fifa.describe())
 
 #AGE BREAKDOWN
 print(fifa['Age'].value_counts())
-#BAR GRAPH OF COUNT BY AGE
-ax = sns.catplot(x='Age',kind='count',data=fifa,orient="h",height=30,aspect=1)
-ax.fig.suptitle('Age Count')
-ax.fig.autofmt_xdate()
+
+
+#NATIONALITY BREAKDOWN
+print(fifa['Nationality'].value_counts().head(10))
+
+
+
+
+
+
+
+#KOREAN PLAYERS
+def kor(x):
+    return fifa[fifa['Nationality'] == x][['Name','Overall','Potential','Position']]
+print(kor('Korea Republic'))
+
+
+
+#REAL MADRID CLUB BREAKDOWN
+def club(x):
+    return fifa[fifa['Club'] == x][['Name','Jersey Number','Position','Overall','Nationality','Age','Wage',
+                                    'Value','Contract Valid Until']]
+print(club('Real Madrid'))
+
+
+
+
+
+
+
+
+#RIGHTY? OR LEFTY?
+plt.rcParams['figure.figsize'] = (10, 5)
+sns.countplot(fifa['Preferred Foot'], palette = 'pink')
+plt.title('Dominant Foot', fontsize = 20)
+plt.show()
+
+#TOP 10 LEFT FOOTED
+print(fifa[fifa['Preferred Foot'] == 'Left'][['Name', 'Age', 'Club', 'Nationality']].head(10))
+
+#TOP 10 RIGHT FOOTED
+print(fifa[fifa['Preferred Foot'] == 'Right'][['Name', 'Age', 'Club', 'Nationality']].head(10))
+
+
+
+
+
+
+
+plt.figure(figsize = (10, 8))
+ax = sns.countplot(x = 'Skill Moves', data = fifa, palette = 'pastel')
+ax.set_title(label = 'Count of Number of Skill Moves', fontsize = 20)
+ax.set_xlabel(xlabel = 'Number of Skill Moves', fontsize = 16)
+ax.set_ylabel(ylabel = 'Count', fontsize = 16)
+plt.show()
+
+
+
+plt.figure(figsize = (13, 8))
+ax = sns.countplot(x = 'Height', data = fifa, palette = 'dark')
+ax.set_title(label = 'Count of Number of Skill Moves by Height', fontsize = 20)
+ax.set_xlabel(xlabel = 'Height in Foot per inch', fontsize = 16)
+ax.set_ylabel(ylabel = 'Count', fontsize = 16)
+plt.show()
 
 
 
@@ -35,5 +95,24 @@ ax.fig.autofmt_xdate()
 
 
 
+#HISTOGRAM OF AGE OF PLAYERS
+sns.set(style = "dark", palette = "colorblind", color_codes = True)
+x = fifa.Age
+plt.figure(figsize = (15,8))
+ax = sns.distplot(x, bins = 58, kde = False, color = 'g')
+ax.set_xlabel(xlabel = "Player\'s age", fontsize = 16)
+ax.set_ylabel(ylabel = 'Number of players', fontsize = 16)
+ax.set_title(label = 'Player Age Breakdown', fontsize = 20)
+plt.show()
 
 #%%
+
+#TOP 10 CLUBS THAT HAVE THE HIGHEST NUMBER OF DIFFERNENT NATIONALITIES
+print(fifa.groupby(fifa['Club'])['Nationality'].nunique().sort_values(ascending = True).head(10))
+
+
+
+
+
+
+
