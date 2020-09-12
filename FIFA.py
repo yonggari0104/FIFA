@@ -20,6 +20,40 @@ print(fifa.describe())
 
 
 
+#FILL MISSING VALUES
+fifa['ShortPassing'].fillna(fifa['ShortPassing'].mean(), inplace = True)
+fifa['Volleys'].fillna(fifa['Volleys'].mean(), inplace = True)
+fifa['Dribbling'].fillna(fifa['Dribbling'].mean(), inplace = True)
+fifa['Curve'].fillna(fifa['Curve'].mean(), inplace = True)
+fifa['FKAccuracy'].fillna(fifa['FKAccuracy'], inplace = True)
+fifa['LongPassing'].fillna(fifa['LongPassing'].mean(), inplace = True)
+fifa['BallControl'].fillna(fifa['BallControl'].mean(), inplace = True)
+fifa['HeadingAccuracy'].fillna(fifa['HeadingAccuracy'].mean(), inplace = True)
+fifa['Finishing'].fillna(fifa['Finishing'].mean(), inplace = True)
+fifa['Crossing'].fillna(fifa['Crossing'].mean(), inplace = True)
+fifa['Weight'].fillna('200lbs', inplace = True)
+fifa['Contract Valid Until'].fillna(2019, inplace = True)
+fifa['Height'].fillna("5'11", inplace = True)
+fifa['Loaned From'].fillna('None', inplace = True)
+fifa['Joined'].fillna('Jul 1, 2018', inplace = True)
+fifa['Jersey Number'].fillna(8, inplace = True)
+fifa['Body Type'].fillna('Normal', inplace = True)
+fifa['Position'].fillna('ST', inplace = True)
+fifa['Club'].fillna('No Club', inplace = True)
+fifa['Work Rate'].fillna('Medium/ Medium', inplace = True)
+fifa['Skill Moves'].fillna(fifa['Skill Moves'].median(), inplace = True)
+fifa['Weak Foot'].fillna(3, inplace = True)
+fifa['Preferred Foot'].fillna('Right', inplace = True)
+fifa['International Reputation'].fillna(1, inplace = True)
+fifa['Wage'].fillna('€200K', inplace = True)
+
+
+
+
+
+
+
+
 #AGE BREAKDOWN
 print(fifa['Age'].value_counts())
 
@@ -105,13 +139,18 @@ ax.set_ylabel(ylabel = 'Number of players', fontsize = 16)
 ax.set_title(label = 'Player Age Breakdown', fontsize = 20)
 plt.show()
 
-#%%
+
+
+
+
+
+
 
 #TOP 10 CLUBS THAT HAVE THE HIGHEST NUMBER OF DIFFERNENT NATIONALITIES
 print(fifa.groupby(fifa['Club'])['Nationality'].nunique().sort_values(ascending = True).head(10))
 
 
-
+#%%
 
 
 
