@@ -104,7 +104,7 @@ print(fifa[fifa['Preferred Foot'] == 'Right'][['Name', 'Age', 'Club', 'Nationali
 
 
 
-
+#SKILL MOVES PLOT
 plt.figure(figsize = (10, 8))
 ax = sns.countplot(x = 'Skill Moves', data = fifa, palette = 'pastel')
 ax.set_title(label = 'Count of Number of Skill Moves', fontsize = 20)
@@ -114,6 +114,8 @@ plt.show()
 
 
 
+
+#SKILL MOVES BY HEIGHT
 plt.figure(figsize = (13, 8))
 ax = sns.countplot(x = 'Height', data = fifa, palette = 'dark')
 ax.set_title(label = 'Count of Number of Skill Moves by Height', fontsize = 20)
@@ -152,6 +154,8 @@ print(fifa.groupby(fifa['Club'])['Nationality'].nunique().sort_values(ascending 
 
 #%%
 
-
-
-
+    
+counts_Nationality = fifa["Nationality"].value_counts()
+counts_Nationality = counts_Nationality.reset_index()
+counts_Nationality.columns= ["Nations","Counts"]
+counts_Nationality.head()
